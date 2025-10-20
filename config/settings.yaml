@@ -1,0 +1,35 @@
+websocket:
+  url: "wss://example.com/feed"
+  reconnect_delay: 5
+  heartbeat_interval: 30
+
+database:
+  host: "localhost"
+  port: 5432
+  database: "market_data"
+  user: "postgres"
+  password: "password"
+
+etl:
+  batch_size: 1000
+  queue_size: 10000
+  symbols:
+    - AAPL
+    - MSFT
+    - GOOGL
+    - AMZN
+    - TSLA
+
+data_processing:
+  chunk_size: 100000
+  use_polars: true
+  default_frequency: "1min"
+  outlier_method: "iqr"
+  outlier_threshold: 3.0
+
+backtesting:
+  initial_cash: 1000000
+  commission: 0.001
+  slippage: 0.0005
+  risk_free_rate: 0.02
+  periods_per_year: 252
