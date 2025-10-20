@@ -1,0 +1,50 @@
+# Database Configuration
+
+# PostgreSQL / TimescaleDB
+postgres:
+  host: "localhost"
+  port: 5432
+  database: "market_data"
+  user: "postgres"
+  password: "password"
+  pool_size: 10
+  min_connections: 1
+  max_connections: 20
+
+# InfluxDB (Alternative time-series DB)
+influxdb:
+  url: "http://localhost:8086"
+  token: "your-influxdb-token"
+  org: "market-data-org"
+  bucket: "ticks"
+
+# QuestDB (Alternative time-series DB)
+questdb:
+  host: "localhost"
+  port: 9000
+  database: "market_data"
+
+# Connection pool settings
+connection_pool:
+  min_size: 1
+  max_size: 20
+  timeout: 30
+  command_timeout: 60
+
+# Table configurations
+tables:
+  trades:
+    partition_by: "timestamp"
+    retention_days: 365
+    indexes:
+      - symbol
+      - timestamp
+      - symbol_timestamp
+
+  ohlcv:
+    partition_by: "timestamp"
+    retention_days: 730
+    indexes:
+      - symbol
+      - timestamp
+      - symbol_timestamp
